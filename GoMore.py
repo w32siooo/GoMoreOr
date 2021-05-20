@@ -44,12 +44,9 @@ class GoMore :
     def createReturnTrip(self, date):
         #get last created ride for template
         tempRide = copy.deepcopy(self.rides[-1])
-        tempRide.from_date = date
-        fc = tempRide.from_city
-        tc = tempRide.to_city
-        tempRide.from_city=tc
-        tempRide.to_city=fc
-        self.rides.append(tempRide)
+
+        #Use the append function to create a return ride, by switching the from city and the to city, and applying the new date from the function argument.
+        self.appendRide([tempRide.to_city,tempRide.from_city,date,tempRide.number_of_seats])
         return len(self.rides)
 
 #This is just the barebones command line program for user input.

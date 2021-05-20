@@ -29,13 +29,18 @@ class GoMore :
         #Search for a suitable ride given user input. Default values are provided.
     def findRide(self, from_city, to_city, from_date=0, to_date=0, min_free_seats=1):
 
+        #Get the rides collection from our noSQL database.
         docs = db.collection(u'rides').stream()
+
+        #Placeholder Array for avaiable Rides
         rides=[]
+
+        #loop through the doc list and append it to our rides list.
         for doc in docs:
             rides.append([doc.to_dict().get('from_city'),doc.to_dict().get('to_city'),doc.to_dict().get('from_date'),doc.to_dict().get('min_free_seats')])
+
         #Output string, I use a string because python makes it easy to concatenate strings with +.
         output = ''
-        #Loop through our "database" only once to keep things efficient.
         for x in rides:
             #If there is no date specified, we skip comparing dates.
             if(from_date==0 and to_date == 0):
@@ -69,7 +74,7 @@ if __name__ == '__main__':
     running = True
     while running:
 
-        value = input("Please enter a string:\n")
+        value = input("Create or Search for a ride:\n")
         if (value=='stop'):
             print('bye')
             running=False
