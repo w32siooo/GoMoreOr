@@ -62,17 +62,16 @@ if __name__ == '__main__':
             print('bye')
             running=False
 
-        if (value.startswith("C")):
-            args_list = value.split()
-            args_list.pop(0)
+        #Split string into arguments and prefix.
+        args_list = value.split()
+        prefix = args_list[0]
+        args_list.pop(0)
+
+        if (prefix==("C")):
             myGoMore.appendRide(args_list)
 
-        if (value.startswith("S")):
-            args_list = value.split()
-            args_list.pop(0)
+        if (prefix==("S")):
             print(myGoMore.findRide(*args_list))
 
-        if (value.startswith("R")):
-            args_list = value.split()
-            args_list.pop(0)
+        if (prefix==("R")):
             myGoMore.createReturnTrip(*args_list)
